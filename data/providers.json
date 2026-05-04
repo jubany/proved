@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Distribuidora Norte",
+    "address": "San Miguel de Tucumán",
+    "lat": 0,
+    "lng": 0,
+    "rating": 4.5,
+    "reviews_count": 120,
+    "category": "mayorista distribuidor",
+    "products": ["lavandina", "detergente", "desinfectante"]
+  },
+  {
+    "name": "Mayorista Clean",
+    "address": "Tafí Viejo",
+    "lat": 0,
+    "lng": 0,
+    "rating": 4.2,
+    "reviews_count": 80,
+    "category": "mayorista",
+    "products": ["detergente", "jabon liquido"]
+  },
+  {
+    "name": "Limpieza Express",
+    "address": "Yerba Buena",
+    "lat": 0,
+    "lng": 0,
+    "rating": 4.0,
+    "reviews_count": 30,
+    "category": "minorista",
+    "products": ["lavandina", "desinfectante"]
+  },
+  {
+    "name": "Higiene Total",
+    "address": "Banda del Río Salí",
+    "lat": 0,
+    "lng": 0,
+    "rating": 4.6,
+    "reviews_count": 200,
+    "category": "distribuidor",
+    "products": ["papel higienico", "detergente"]
+  },
+  {
+    "name": "CleanPro Tucumán",
+    "address": "San Miguel de Tucumán",
+    "lat": 0,
+    "lng": 0,
+    "rating": 4.3,
+    "reviews_count": 60,
+    "category": "mayorista",
+    "products": ["lavandina", "quimicos"]
+  }
+]

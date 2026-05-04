@@ -1,15 +1,31 @@
-## FEATURE:
+Proyecto: Comparador de proveedores de artículos de limpieza en Tucumán
 
-[Insert your feature here]
+Objetivo:
+Crear una herramienta que busque, compare y recomiende los mejores proveedores de artículos de limpieza en Tucumán, Argentina, según las necesidades del usuario.
 
-## EXAMPLES:
+Funcionalidades:
+- Buscar proveedores en Tucumán
+- Comparar proveedores según:
+  - Precio
+  - Calidad
+  - Volumen disponible
+- Recomendar el mejor proveedor según el criterio elegido
 
-[Provide and explain examples that you have in the `examples/` folder]
+Inputs del usuario:
+- Tipo de producto (ej: detergente, lavandina, etc.)
+- Prioridad (precio, calidad o volumen)
 
-## DOCUMENTATION:
+Criterios de evaluación:
+- Reputación del proveedor
+- Variedad de productos
+- Ubicación
+- Relación precio/calidad
 
-[List out any documentation (web pages, sources for an MCP server like Crawl4AI RAG, etc.) that will need to be referenced during development]
-
-## OTHER CONSIDERATIONS:
-
-[Any other considerations or specific requirements - great place to include gotchas that you see AI coding assistants miss with your projects a lot]
+Output esperado:
+- Lista de proveedores recomendados
+- Ranking del mejor al peor
+- Información básica de cada proveedor:
+  - Nombre
+  - Ubicación
+  - Descripción
+  - (opcional) contacto
