@@ -16,5 +16,14 @@
     "currency": "ARS",
     "updated_at": "2026-05-06",
     "source": "carga_manual"
+  },
+  {
+    "provider_name": "Marvin Cosmetica y Limpieza",
+    "product_name": "Detergente 5L",
+    "unit": "unidad",
+    "price": 3100,
+    "currency": "ARS",
+    "updated_at": "2026-05-06",
+    "source": "carga_manual"
   }
 ]
