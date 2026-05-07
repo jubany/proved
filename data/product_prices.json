@@ -1,0 +1,20 @@
+[
+  {
+    "provider_name": "Basualdo Mayorista",
+    "product_name": "Lavandina 5L",
+    "unit": "unidad",
+    "price": 2500,
+    "currency": "ARS",
+    "updated_at": "2026-05-06",
+    "source": "carga_manual"
+  },
+  {
+    "provider_name": "San Cayetano Mayorista",
+    "product_name": "Lavandina 5L",
+    "unit": "unidad",
+    "price": 2350,
+    "currency": "ARS",
+    "updated_at": "2026-05-06",
+    "source": "carga_manual"
+  }
+]
