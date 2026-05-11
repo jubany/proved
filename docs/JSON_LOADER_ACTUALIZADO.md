@@ -1,3 +1,14 @@
+# `src/collector/json_loader.py` actualizado
+
+Si Python falla con:
+
+```text
+NameError: name 'Any' is not defined
+```
+
+significa que `src/collector/json_loader.py` quedó copiado parcialmente: falta `from typing import Any` arriba del archivo. Reemplazá el archivo completo por este contenido.
+
+```python
 import json
 from typing import Any
 
@@ -91,3 +102,22 @@ def load_providers_from_json(path: str) -> list[Provider]:
         providers.append(provider)
 
     return providers
+```
+
+Después validá que el archivo tenga el import correcto:
+
+```bash
+python - <<'PY'
+from pathlib import Path
+text = Path("src/collector/json_loader.py").read_text(encoding="utf-8")
+print("tiene Any:", "from typing import Any" in text)
+print("tiene price_items:", "price_items=_price_items(item)" in text)
+PY
+```
+
+La salida esperada es:
+
+```text
+tiene Any: True
+tiene price_items: True
+```
