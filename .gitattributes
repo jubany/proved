@@ -1,2 +1,6 @@
-# Auto detect text files and perform LF normalization
+# Auto detect text files and keep cross-platform source files with LF endings.
 * text=auto
+*.py text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.sh text eol=lf

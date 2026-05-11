@@ -1,5 +1,5 @@
-from dataclasses import dataclass
-from typing import Optional
+from dataclasses import dataclass, field
+from typing import Any, Optional
 
 
 @dataclass
@@ -11,7 +11,13 @@ class Provider:
     rating: Optional[float]
     reviews_count: Optional[int]
     category: str
-    products: list[str]  #
+    products: list[str]
+
+    phone: str = ""
+    website: str = ""
+    social_links: list[str] = field(default_factory=list)
+    price_items: list[dict[str, Any]] = field(default_factory=list)
+    tags: dict[str, Any] = field(default_factory=dict)
 
     # scores
     calidad_score: float = 0

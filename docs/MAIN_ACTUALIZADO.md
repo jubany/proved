@@ -1,3 +1,8 @@
+# `src/main.py` actualizado
+
+Si tu `python src/main.py --help` sólo muestra `--priority` y `--query`, reemplazá tu archivo `src/main.py` completo por este contenido.
+
+```python
 import argparse
 import sys
 from pathlib import Path
@@ -159,3 +164,13 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+```
+
+Luego validá:
+
+```bash
+export PYTHONPATH="$PWD/src"
+python src/main.py --help
+```
+
+La ayuda debe mostrar `--source`, `--top-n` y `--legacy`.

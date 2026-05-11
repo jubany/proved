@@ -29,6 +29,16 @@ cd Context-Engineering-Intro
 /execute-prp PRPs/your-feature-name.md
 ```
 
+
+## 🧪 Proved provider pipeline checks
+
+This repository also includes a provider-ranking pipeline under `src/`. To run the Python tests for that pipeline:
+
+```bash
+python -m pip install -r requirements.txt
+PYTHONPATH=src python -m pytest tests
+```
+
 ## 📚 Table of Contents
 
 - [What is Context Engineering?](#what-is-context-engineering)
