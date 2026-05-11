@@ -1,0 +1,294 @@
+[
+  {
+    "name": "Basualdo Mayorista",
+    "address": "",
+    "lat": -26.8799607,
+    "lng": -65.20745,
+    "rating": null,
+    "reviews_count": null,
+    "category": "supermarket",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 2988242319,
+    "tags": {
+      "name": "Basualdo Mayorista",
+      "shop": "supermarket"
+    }
+  },
+  {
+    "name": "San Cayetano Mayorista",
+    "address": "",
+    "lat": -26.8580374,
+    "lng": -65.1924941,
+    "rating": null,
+    "reviews_count": null,
+    "category": "supermarket",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 2988242327,
+    "tags": {
+      "name": "San Cayetano Mayorista",
+      "shop": "supermarket"
+    }
+  },
+  {
+    "name": "Mayorista Gomez Pardo hnos",
+    "address": "Chacabuco",
+    "lat": -26.8462169,
+    "lng": -65.2113808,
+    "rating": null,
+    "reviews_count": null,
+    "category": "supermarket",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 3822473341,
+    "tags": {
+      "addr:city": "San Miguel de Tucumán",
+      "addr:housenumber": "1128",
+      "addr:postcode": "4000",
+      "addr:street": "Chacabuco",
+      "name": "Mayorista Gomez Pardo hnos",
+      "note": "Sucursal  mayorista que inició la cadena Gomez Pardo de San Miguel de Tucuman. ",
+      "phone": "03814526210",
+      "shop": "supermarket"
+    }
+  },
+  {
+    "name": "Marvin Cosmetica y Limpieza",
+    "address": "Virgen del Carmen",
+    "lat": -27.4261787,
+    "lng": -65.6130663,
+    "rating": null,
+    "reviews_count": null,
+    "category": "supermarket",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 8194464164,
+    "tags": {
+      "addr:street": "Virgen del Carmen",
+      "name": "Marvin Cosmetica y Limpieza",
+      "shop": "supermarket"
+    }
+  },
+  {
+    "name": "Supermercados Comodin",
+    "address": "Avenida Leandro N. Alem",
+    "lat": -26.8525314,
+    "lng": -65.2240596,
+    "rating": null,
+    "reviews_count": null,
+    "category": "supermarket",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 9813411273,
+    "tags": {
+      "addr:city": "San Miguel de Tucumán",
+      "addr:housenumber": "1796",
+      "addr:postcode": "4000",
+      "addr:street": "Avenida Leandro N. Alem",
+      "name": "Supermercados Comodin",
+      "opening_hours": "Mo-Su 08:00-21:00",
+      "operator": "Alberdi S. A.",
+      "phone": "+543814206212",
+      "shop": "supermarket",
+      "website": "http://supermercadoscomodin.com/nuestras-sucursales/sucursal-c25/",
+      "wholesale": "no"
+    }
+  },
+  {
+    "name": "Supermercados Comodin",
+    "address": "Avenida Néstor Kirchner",
+    "lat": -26.8347362,
+    "lng": -65.247985,
+    "rating": null,
+    "reviews_count": null,
+    "category": "supermarket",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 9834769934,
+    "tags": {
+      "addr:city": "San Miguel de Tucumán",
+      "addr:housenumber": "3057",
+      "addr:postcode": "4000",
+      "addr:street": "Avenida Néstor Kirchner",
+      "name": "Supermercados Comodin",
+      "opening_hours": "Mo-Su 08:00-21:00",
+      "operator": "Alberdi S. A.",
+      "phone": "+543814556024",
+      "shop": "supermarket",
+      "website": "https://supermercadoscomodin.com/nuestras-sucursales/sucursal-c23/",
+      "wholesale": "no"
+    }
+  },
+  {
+    "name": "Plasticaucho",
+    "address": "Lavalle",
+    "lat": -26.8322149,
+    "lng": -65.2445202,
+    "rating": null,
+    "reviews_count": null,
+    "category": "wholesale",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 10246721115,
+    "tags": {
+      "addr:city": "San Miguel de Tucuman",
+      "addr:housenumber": "2932",
+      "addr:postcode": "4000",
+      "addr:street": "Lavalle",
+      "contact:facebook": "https://www.facebook.com/Plasticaucho/",
+      "contact:whatsapp": "+54 381 300-0242",
+      "email": "comercial@plasticaucho.com.ar",
+      "name": "Plasticaucho",
+      "official_name": "Plasticaucho S.A.",
+      "shop": "wholesale"
+    }
+  },
+  {
+    "name": "Combustible Agro",
+    "address": "",
+    "lat": -26.8795353,
+    "lng": -64.9932878,
+    "rating": null,
+    "reviews_count": null,
+    "category": "fuel",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 10698458428,
+    "tags": {
+      "name": "Combustible Agro",
+      "shop": "fuel",
+      "wholesale": "yes"
+    }
+  },
+  {
+    "name": "La Rotonda Mayorista",
+    "address": "Avenida Independencia",
+    "lat": -26.8321296,
+    "lng": -65.1633747,
+    "rating": null,
+    "reviews_count": null,
+    "category": "wholesale",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 12469912001,
+    "tags": {
+      "addr:city": "Banda del Río Salí",
+      "addr:postcode": "4109",
+      "addr:street": "Avenida Independencia",
+      "name": "La Rotonda Mayorista",
+      "shop": "wholesale"
+    }
+  },
+  {
+    "name": "Gómez Pardo Mayorista",
+    "address": "Ruta Nacional 38",
+    "lat": -27.3726135,
+    "lng": -65.5911224,
+    "rating": null,
+    "reviews_count": null,
+    "category": "wholesale",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 13144539661,
+    "tags": {
+      "addr:city": "Concepción",
+      "addr:street": "Ruta Nacional 38",
+      "alt_name": "Megacentro Gómez Pardo",
+      "name": "Gómez Pardo Mayorista",
+      "shop": "wholesale",
+      "website": "https://www.gomezpardo.com.ar/"
+    }
+  },
+  {
+    "name": "CAFAYATE MAYORISTA",
+    "address": "Rivadavia",
+    "lat": -26.0705206,
+    "lng": -65.9805222,
+    "rating": null,
+    "reviews_count": null,
+    "category": "supermarket",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 13461195001,
+    "tags": {
+      "addr:housenumber": "380",
+      "addr:postcode": "A4427",
+      "addr:street": "Rivadavia",
+      "name": "CAFAYATE MAYORISTA",
+      "shop": "supermarket"
+    }
+  },
+  {
+    "name": "Centro de Distribución Quilmes",
+    "address": "Alsina",
+    "lat": -26.8370083,
+    "lng": -65.2537121,
+    "rating": null,
+    "reviews_count": null,
+    "category": "wholesale",
+    "products": [],
+    "source": "osm",
+    "osm_type": "way",
+    "osm_id": 93809836,
+    "tags": {
+      "addr:city": "San Miguel de Tucumán",
+      "addr:postcode": "4000",
+      "addr:street": "Alsina",
+      "building": "yes",
+      "name": "Centro de Distribución Quilmes",
+      "shop": "wholesale",
+      "source": "Bing"
+    }
+  },
+  {
+    "name": "Makro",
+    "address": "",
+    "lat": -26.8379164,
+    "lng": -65.266657,
+    "rating": null,
+    "reviews_count": null,
+    "category": "wholesale",
+    "products": [],
+    "source": "osm",
+    "osm_type": "way",
+    "osm_id": 95948899,
+    "tags": {
+      "brand": "Makro",
+      "brand:wikidata": "Q704606",
+      "brand:wikipedia": "en:Makro",
+      "name": "Makro",
+      "opening_hours": "Mo-Fr 09:00-21:00",
+      "shop": "wholesale"
+    }
+  },
+  {
+    "name": "Dirección Higiene Urbana",
+    "address": "",
+    "lat": -26.832746,
+    "lng": -65.214794,
+    "rating": null,
+    "reviews_count": null,
+    "category": "",
+    "products": [],
+    "source": "osm",
+    "osm_type": "way",
+    "osm_id": 403884340,
+    "tags": {
+      "building": "public",
+      "name": "Dirección Higiene Urbana",
+      "note": "Municipalidad San Miguel de Tucumán"
+    }
+  }
+]

@@ -1,0 +1,156 @@
+[
+  {
+    "name": "Basualdo Mayorista",
+    "address": "",
+    "lat": -26.8799607,
+    "lng": -65.20745,
+    "rating": null,
+    "reviews_count": null,
+    "category": "supermarket",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 2988242319,
+    "tags": {
+      "name": "Basualdo Mayorista",
+      "shop": "supermarket"
+    }
+  },
+  {
+    "name": "San Cayetano Mayorista",
+    "address": "",
+    "lat": -26.8580374,
+    "lng": -65.1924941,
+    "rating": null,
+    "reviews_count": null,
+    "category": "supermarket",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 2988242327,
+    "tags": {
+      "name": "San Cayetano Mayorista",
+      "shop": "supermarket"
+    }
+  },
+  {
+    "name": "Mayorista Gomez Pardo hnos",
+    "address": "Chacabuco",
+    "lat": -26.8462169,
+    "lng": -65.2113808,
+    "rating": null,
+    "reviews_count": null,
+    "category": "supermarket",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 3822473341,
+    "tags": {
+      "addr:city": "San Miguel de Tucumán",
+      "addr:housenumber": "1128",
+      "addr:postcode": "4000",
+      "addr:street": "Chacabuco",
+      "name": "Mayorista Gomez Pardo hnos",
+      "note": "Sucursal  mayorista que inició la cadena Gomez Pardo de San Miguel de Tucuman. ",
+      "phone": "03814526210",
+      "shop": "supermarket"
+    }
+  },
+  {
+    "name": "Marvin Cosmetica y Limpieza",
+    "address": "Virgen del Carmen",
+    "lat": -27.4261787,
+    "lng": -65.6130663,
+    "rating": null,
+    "reviews_count": null,
+    "category": "supermarket",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 8194464164,
+    "tags": {
+      "addr:street": "Virgen del Carmen",
+      "name": "Marvin Cosmetica y Limpieza",
+      "shop": "supermarket"
+    }
+  },
+  {
+    "name": "La Rotonda Mayorista",
+    "address": "Avenida Independencia",
+    "lat": -26.8321296,
+    "lng": -65.1633747,
+    "rating": null,
+    "reviews_count": null,
+    "category": "wholesale",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 12469912001,
+    "tags": {
+      "addr:city": "Banda del Río Salí",
+      "addr:postcode": "4109",
+      "addr:street": "Avenida Independencia",
+      "name": "La Rotonda Mayorista",
+      "shop": "wholesale"
+    }
+  },
+  {
+    "name": "Gómez Pardo Mayorista",
+    "address": "Ruta Nacional 38",
+    "lat": -27.3726135,
+    "lng": -65.5911224,
+    "rating": null,
+    "reviews_count": null,
+    "category": "wholesale",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 13144539661,
+    "tags": {
+      "addr:city": "Concepción",
+      "addr:street": "Ruta Nacional 38",
+      "alt_name": "Megacentro Gómez Pardo",
+      "name": "Gómez Pardo Mayorista",
+      "shop": "wholesale",
+      "website": "https://www.gomezpardo.com.ar/"
+    }
+  },
+  {
+    "name": "CAFAYATE MAYORISTA",
+    "address": "Rivadavia",
+    "lat": -26.0705206,
+    "lng": -65.9805222,
+    "rating": null,
+    "reviews_count": null,
+    "category": "supermarket",
+    "products": [],
+    "source": "osm",
+    "osm_type": "node",
+    "osm_id": 13461195001,
+    "tags": {
+      "addr:housenumber": "380",
+      "addr:postcode": "A4427",
+      "addr:street": "Rivadavia",
+      "name": "CAFAYATE MAYORISTA",
+      "shop": "supermarket"
+    }
+  },
+  {
+    "name": "Dirección Higiene Urbana",
+    "address": "",
+    "lat": -26.832746,
+    "lng": -65.214794,
+    "rating": null,
+    "reviews_count": null,
+    "category": "",
+    "products": [],
+    "source": "osm",
+    "osm_type": "way",
+    "osm_id": 403884340,
+    "tags": {
+      "building": "public",
+      "name": "Dirección Higiene Urbana",
+      "note": "Municipalidad San Miguel de Tucumán"
+    }
+  }
+]

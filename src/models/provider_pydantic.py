@@ -1,5 +1,4 @@
 from typing import Any
-
 from pydantic import BaseModel, Field
 
 
@@ -12,12 +11,6 @@ class ProviderNormalized(BaseModel):
     reviews_count: int | None = Field(default=None)
     category: str = Field(default="")
     products: list[str] = Field(default_factory=list)
-
-    phone: str = Field(default="")
-    website: str = Field(default="")
-    social_links: list[str] = Field(default_factory=list)
-    price_items: list[dict[str, Any]] = Field(default_factory=list)
-
     source: str = Field(default="osm")
     osm_type: str | None = Field(default=None)
     osm_id: int | None = Field(default=None)

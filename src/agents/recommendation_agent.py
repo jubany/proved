@@ -14,19 +14,13 @@ class RecommendationAgent(BaseAgent):
         value = getattr(provider, attr, default)
         return value if value not in (None, "") else default
 
-    @staticmethod
-    def _price_sort_value(item: Any) -> float:
-        if not isinstance(item, dict):
-            return float("inf")
-        try:
-            return float(item.get("price", 0))
-        except (TypeError, ValueError):
-            return float("inf")
-
     @classmethod
     def _cheapest_price_items(cls, provider: Any) -> list[dict[str, Any]]:
         price_items = cls._provider_attr(provider, "price_items", [])
-        return sorted(price_items, key=cls._price_sort_value)[:5]
+        return sorted(
+            price_items,
+            key=lambda item: float(item.get("price", 0)) if isinstance(item, dict) else 0,
+        )[:5]
 
     @classmethod
     def _to_recommendation(cls, provider: Any, product_query: str = "") -> dict[str, Any]:
@@ -51,11 +45,7 @@ class RecommendationAgent(BaseAgent):
                 "volumen": round(getattr(provider, "volumen_score", 0), 2),
             },
             "notes": {
-                "prices": (
-                    "Comparación por precio aplicada sobre matched_price_items."
-                    if matched_items
-                    else "Sin coincidencias de precio para product_query; revisá pipeline.ingestion.priced_count y pipeline.evaluation.matched_provider_count."
-                ),
+                "prices": "OSM normalmente no incluye precios; se compararán cuando carguemos price_items.",
             },
         }
 

@@ -1,4 +1,3 @@
-import unicodedata
 from typing import Any
 
 from models.provider import Provider
@@ -9,9 +8,7 @@ from .base import BaseAgent
 
 
 def _normalize_query(value: str) -> str:
-    normalized = unicodedata.normalize("NFKD", value.strip().lower())
-    without_accents = "".join(char for char in normalized if not unicodedata.combining(char))
-    return " ".join(without_accents.split())
+    return " ".join(value.lower().split())
 
 
 def _provider_price_items(provider: Provider) -> list[dict[str, Any]]:
@@ -33,14 +30,8 @@ def matched_price_items(provider: Provider, product_query: str) -> list[dict[str
 
     matches = []
     for item in _provider_price_items(provider):
-        searchable_parts = [
-            str(item.get("product_name") or ""),
-            str(item.get("name") or ""),
-            str(item.get("category") or ""),
-            str(item.get("unit") or ""),
-        ]
-        searchable_text = _normalize_query(" ".join(searchable_parts))
-        if query in searchable_text:
+        product_name = _normalize_query(str(item.get("product_name") or ""))
+        if query in product_name:
             matches.append(item)
 
     return sorted(matches, key=_price_value)

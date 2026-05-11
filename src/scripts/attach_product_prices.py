@@ -25,14 +25,9 @@ def normalize_name(value: str) -> str:
     return " ".join(without_accents.split())
 
 
-def load_json_list(path: Path, root_key: str | None = None) -> list[dict[str, Any]]:
+def load_json_list(path: Path) -> list[dict[str, Any]]:
     with path.open("r", encoding="utf-8") as file:
         data = json.load(file)
-
-    if root_key and isinstance(data, dict):
-        if root_key not in data:
-            raise ValueError(f"{path} debe contener una lista JSON o un objeto con clave '{root_key}'")
-        data = data[root_key]
 
     if not isinstance(data, list):
         raise ValueError(f"{path} debe contener una lista JSON")
@@ -120,7 +115,7 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        providers = load_json_list(Path(args.providers), root_key="providers")
+        providers = load_json_list(Path(args.providers))
         prices = load_json_list(Path(args.prices))
         enriched, matched_count, unmatched_names = merge_prices(providers, prices)
         write_json_atomic(Path(args.output), enriched)
@@ -132,13 +127,6 @@ def main() -> int:
     print(f"✅ Precios leídos: {len(prices)}")
     print(f"✅ Proveedores con precios adjuntos: {matched_count}")
     print(f"📄 Archivo enriquecido: {args.output}")
-
-    if matched_count == 0 and prices:
-        provider_names = [str(provider.get("name")) for provider in providers[:10]]
-        price_provider_names = sorted({str(price.get("provider_name")) for price in prices})
-        print("⚠️ No se adjuntó ningún precio. Revisá que provider_name coincida con name.")
-        print("   Proveedores disponibles (muestra):", provider_names)
-        print("   provider_name en precios:", price_provider_names)
 
     if unmatched_names:
         print("⚠️ Precios sin proveedor encontrado:", unmatched_names)
