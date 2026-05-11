@@ -16,6 +16,7 @@ class IngestionAgent(BaseAgent):
     def _default_sources() -> list[Path]:
         repo_root = Path(__file__).resolve().parents[2]
         return [
+            repo_root / "data" / "providers_real_b2b_priced.json",
             repo_root / "data" / "providers_real_b2b.json",
             repo_root / "data" / "providers_real.json",
             repo_root / "data" / "providers.json",
@@ -64,8 +65,8 @@ class IngestionAgent(BaseAgent):
                 return {
                     "ok": False,
                     "error": (
-                        "No se encontró un JSON válido en data/providers_real_b2b.json, "
-                        "data/providers_real.json ni data/providers.json"
+                        "No se encontró un JSON válido en data/providers_real_b2b_priced.json, "
+                        "data/providers_real_b2b.json, data/providers_real.json ni data/providers.json"
                     ),
                     "skipped_sources": skipped_sources,
                 }

@@ -1,3 +1,4 @@
+import unicodedata
 from typing import Any
 
 from models.provider import Provider
@@ -8,7 +9,9 @@ from .base import BaseAgent
 
 
 def _normalize_query(value: str) -> str:
-    return " ".join(value.lower().split())
+    normalized = unicodedata.normalize("NFKD", value.lower())
+    without_accents = "".join(char for char in normalized if not unicodedata.combining(char))
+    return " ".join(without_accents.split())
 
 
 def _provider_price_items(provider: Provider) -> list[dict[str, Any]]:
