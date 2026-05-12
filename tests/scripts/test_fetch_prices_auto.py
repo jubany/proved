@@ -76,3 +76,40 @@ def test_merge_provider_sources_deduplicates_by_source_key():
     assert len(providers) == 2
     assert providers[0]["products"] == ["Lavandina 1L", "Detergente 1L"]
     assert len(providers[0]["price_items"]) == 2
+
+
+def test_validate_providers_discards_invalid_price_items_and_logs(caplog):
+    providers = [
+        {
+            "name": "Proveedor válido",
+            "address": "Tucumán",
+            "category": "mayorista",
+            "products": ["Lavandina"],
+            "price_items": [{"product_name": "Lavandina 5L", "price": "2500"}],
+            "tags": {"source": "manual_price_file"},
+        },
+        {
+            "name": "Proveedor inválido",
+            "address": "Tucumán",
+            "category": "mayorista",
+            "products": [],
+            "price_items": [{"product_name": "Lavandina 5L", "price": "sin precio"}],
+            "tags": {"source": "manual_price_file"},
+        },
+    ]
+
+    valid = fetch_prices_auto.validate_providers(providers, "manual_price_file")
+
+    assert len(valid) == 1
+    assert valid[0]["price_items"][0]["price"] == 2500.0
+    assert "Proveedor descartado desde manual_price_file" in caplog.text
+
+
+def test_fetch_validated_provider_source_logs_source_errors(caplog):
+    def broken_fetcher():
+        raise RuntimeError("API temporalmente caída")
+
+    providers = fetch_prices_auto.fetch_validated_provider_source("sepa_api", broken_fetcher)
+
+    assert providers == []
+    assert "No se pudo consultar sepa_api" in caplog.text

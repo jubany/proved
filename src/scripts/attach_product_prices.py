@@ -25,12 +25,18 @@ def normalize_name(value: str) -> str:
     return " ".join(without_accents.split())
 
 
-def load_json_list(path: Path) -> list[dict[str, Any]]:
+def load_json_list(path: Path, root_key: str | None = None) -> list[dict[str, Any]]:
     with path.open("r", encoding="utf-8") as file:
         data = json.load(file)
 
+    if root_key and isinstance(data, dict):
+        if root_key not in data:
+            raise ValueError(f"{path} debe incluir la clave {root_key!r}")
+        data = data[root_key]
+
     if not isinstance(data, list):
-        raise ValueError(f"{path} debe contener una lista JSON")
+        expected = f"una lista JSON o un objeto con clave {root_key!r}" if root_key else "una lista JSON"
+        raise ValueError(f"{path} debe contener {expected}")
 
     invalid_items = [idx for idx, item in enumerate(data) if not isinstance(item, dict)]
     if invalid_items:

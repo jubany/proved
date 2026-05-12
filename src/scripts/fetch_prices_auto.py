@@ -12,8 +12,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
 import sys
 from pathlib import Path
+from collections.abc import Callable
 from typing import Any
 from urllib.parse import urlencode
 
@@ -24,6 +26,11 @@ MERCADOLIBRE_SEARCH_URL = "https://api.mercadolibre.com/sites/MLA/search"
 DEFAULT_ML_CATEGORY = "MLA1246"
 DEFAULT_LAT = -26.8241
 DEFAULT_LNG = -65.2226
+LOGGER = logging.getLogger(__name__)
+
+
+class ProviderValidationError(ValueError):
+    """Error de validación para proveedores generados por fuentes de precios."""
 
 
 def load_price_sources(path: Path) -> list[dict[str, Any]]:
@@ -112,6 +119,91 @@ def _mercadolibre_item_to_price_item(item: dict[str, Any], product: dict[str, An
     }
 
 
+def _validate_price_item(item: Any, provider_name: str, index: int) -> dict[str, Any]:
+    if not isinstance(item, dict):
+        raise ProviderValidationError(f"{provider_name}: price_items[{index}] debe ser un objeto JSON")
+
+    product_name = str(item.get("product_name") or item.get("name") or "").strip()
+    if not product_name:
+        raise ProviderValidationError(f"{provider_name}: price_items[{index}] no tiene product_name")
+
+    price = sepa._float_or_none(item.get("price"))
+    if price is None or price < 0:
+        raise ProviderValidationError(f"{provider_name}: price_items[{index}] tiene price inválido: {item.get('price')}")
+
+    normalized = dict(item)
+    normalized["product_name"] = product_name
+    normalized["price"] = price
+    normalized["unit"] = str(normalized.get("unit") or "unidad")
+    normalized["currency"] = str(normalized.get("currency") or "ARS")
+    normalized["source"] = str(normalized.get("source") or "unknown")
+    return normalized
+
+
+def validate_provider(provider: Any, source_label: str, index: int) -> dict[str, Any]:
+    """Valida y normaliza un proveedor antes de mezclarlo en el flujo automático."""
+    if not isinstance(provider, dict):
+        raise ProviderValidationError(f"{source_label}[{index}] debe ser un objeto JSON")
+
+    provider_name = str(provider.get("name") or "").strip()
+    if not provider_name:
+        raise ProviderValidationError(f"{source_label}[{index}] no tiene name")
+
+    normalized = dict(provider)
+    normalized["name"] = provider_name
+    normalized["address"] = str(normalized.get("address") or "Sin domicilio disponible")
+    normalized["category"] = str(normalized.get("category") or source_label)
+
+    products = normalized.get("products") or []
+    if not isinstance(products, list):
+        raise ProviderValidationError(f"{provider_name}: products debe ser una lista")
+    normalized["products"] = [str(product) for product in products if str(product).strip()]
+
+    price_items = normalized.get("price_items") or []
+    if not isinstance(price_items, list):
+        raise ProviderValidationError(f"{provider_name}: price_items debe ser una lista")
+    normalized["price_items"] = [
+        _validate_price_item(item, provider_name, item_index) for item_index, item in enumerate(price_items)
+    ]
+
+    tags = normalized.get("tags") or {}
+    if not isinstance(tags, dict):
+        raise ProviderValidationError(f"{provider_name}: tags debe ser un objeto JSON")
+    tags.setdefault("source", source_label)
+    normalized["tags"] = tags
+    return normalized
+
+
+def validate_providers(providers: list[dict[str, Any]], source_label: str) -> list[dict[str, Any]]:
+    """Descarta proveedores inválidos y registra el detalle para diagnóstico."""
+    valid_providers = []
+    for index, provider in enumerate(providers):
+        try:
+            valid_providers.append(validate_provider(provider, source_label, index))
+        except ProviderValidationError as exc:
+            LOGGER.warning("Proveedor descartado desde %s: %s", source_label, exc)
+    LOGGER.info(
+        "Validación de proveedores %s: %s válidos, %s descartados",
+        source_label,
+        len(valid_providers),
+        len(providers) - len(valid_providers),
+    )
+    return valid_providers
+
+
+def fetch_validated_provider_source(source_label: str, fetcher: Callable[[], list[dict[str, Any]]]) -> list[dict[str, Any]]:
+    """Ejecuta una fuente de proveedores, registra errores y valida su salida."""
+    try:
+        providers = fetcher()
+    except (OSError, json.JSONDecodeError, ValueError, RuntimeError) as exc:
+        LOGGER.error("No se pudo consultar %s: %s", source_label, exc)
+        return []
+    if not isinstance(providers, list):
+        LOGGER.error("La fuente %s devolvió %s; se esperaba una lista", source_label, type(providers).__name__)
+        return []
+    return validate_providers(providers, source_label)
+
+
 def fetch_mercadolibre_providers(products: list[dict[str, Any]], limit: int, timeout: int) -> list[dict[str, Any]]:
     """Busca ofertas de Mercado Libre y agrupa resultados por vendedor."""
     providers_by_seller: dict[str, dict[str, Any]] = {}
@@ -195,6 +287,7 @@ def merge_provider_sources(provider_groups: list[list[dict[str, Any]]]) -> list[
 
 
 def main() -> int:
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s:%(name)s:%(message)s")
     parser = argparse.ArgumentParser()
     parser.add_argument("--products", default="data/price_sources.example.json")
     parser.add_argument("--output", default="data/providers_real_b2b_priced.json")
@@ -210,9 +303,23 @@ def main() -> int:
 
     try:
         products = load_price_sources(Path(args.products))
-        sepa_providers = [] if args.skip_sepa else fetch_sepa_providers(products, args.lat, args.lng, args.limit, args.timeout)
-        ml_providers = [] if args.skip_mercadolibre else fetch_mercadolibre_providers(products, args.limit, args.timeout)
-        manual_providers = load_manual_priced_providers(Path(args.manual_providers), Path(args.manual_prices))
+        sepa_providers = (
+            []
+            if args.skip_sepa
+            else fetch_validated_provider_source(
+                "sepa_api", lambda: fetch_sepa_providers(products, args.lat, args.lng, args.limit, args.timeout)
+            )
+        )
+        ml_providers = (
+            []
+            if args.skip_mercadolibre
+            else fetch_validated_provider_source(
+                "mercadolibre_api", lambda: fetch_mercadolibre_providers(products, args.limit, args.timeout)
+            )
+        )
+        manual_providers = fetch_validated_provider_source(
+            "manual_price_file", lambda: load_manual_priced_providers(Path(args.manual_providers), Path(args.manual_prices))
+        )
         providers = merge_provider_sources([sepa_providers, ml_providers, manual_providers])
         sepa.write_json_atomic(Path(args.output), providers)
     except (OSError, json.JSONDecodeError, ValueError, RuntimeError) as exc:
